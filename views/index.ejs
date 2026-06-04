@@ -1,7 +1,32 @@
-<% const animals = ["Cat", "Dog", "Lemur", "Hawk"] %>
+<!DOCTYPE html>
+<html lang="en">
 
-<ul>
-  <% animals.map((animal) => { %>
-    <li><%= animal %>s are cute</li>
-  <% }) %>
-</ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>Message board</header>
+  <div class="top">
+    <h1>Messages</h1>
+    <a href="/new" class="button-class">
+      Add message</a>
+  </div>
+  <ul>
+    <% messages.map((message)=> { %>
+      <li>
+        Posted by: <%= message.user %> at <%= message.added.toDateString() %>:<br>
+            > <%= message.text %>
+      </li>
+      <% }) %>
+  </ul>
+
+
+</body>
+
+</html>
