@@ -39,3 +39,21 @@ form{
     align-items: start;
     gap: 3px 0;
 }
+
+li{
+    margin-top: 10px;
+}
+
+.message_item{
+    display: flex;
+    align-items: center;
+    gap: 0 8px;
+}
+
+.message_item button{
+    padding: 8px 2px;
+}
+
+.message_details{
+    margin-left: 10px;
+}

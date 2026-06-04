@@ -8,6 +8,8 @@
     <%= title %>
   </title>
   <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.svg" />
+
 </head>
 
 <body>
@@ -20,13 +22,23 @@
   <ul>
     <% messages.map((message)=> { %>
       <li>
-        Posted by: <%= message.user %> at <%= message.added.toDateString() %>:<br>
-            > <%= message.text %>
+        <div id=<%=message.id %> class="message_item">
+          <p>Posted by: <strong>
+              <%= message.user %>
+            </strong> at <%= message.added.toDateString() %>:<br>
+              > <%= message.text %>
+          </p>
+          <button onclick="goToDetails(event)">Details</button>
+        </div>
       </li>
       <% }) %>
   </ul>
 
-
+  <script>
+    function goToDetails(e) {
+      window.location.href = "/details/" + e.target.parentElement.id;
+    }
+  </script>
 </body>
 
 </html>

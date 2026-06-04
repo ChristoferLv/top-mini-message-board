@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/favicon.svg" />
+
+</head>
+
+<body>
+    <header>Message board</header>
+    <div class="top">
+        <h1>Message datails</h1>
+        <a href="/" class="button-class">
+            Go back</a>
+    </div>
+    <div class="message_details">
+        <p>Message id: <%= id %>
+        </p>
+        <p>Message author: <%= user %>
+        </p>
+        <p>Message content: <%= text %>
+        </p>
+        <p>Message added at: <%= `${added.toDateString()} - ${added.toLocaleTimeString()}` %>
+        </p>
+    </div>
+
+</body>
+
+</html>
