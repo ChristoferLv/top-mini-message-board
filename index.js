@@ -1,5 +1,6 @@
 import { join } from 'node:path';
 import express from "express";
+import { getAllMessages, getAllMessagesWithParam, deleteMessage, insertMessage, getMessageById, clearDB } from "./db/queries.js";
 
 const dir = import.meta.dirname;
 const PORT = 3000;
@@ -7,36 +8,34 @@ const app = express();
 const assetsPath = join(dir, "public");
 
 
-const messages = [
-    {
-        id: crypto.randomUUID(),
-        text: "Hi there!",
-        user: "Amando",
-        added: new Date()
-    },
-    {
-        id: crypto.randomUUID(),
-        text: "Hello World!",
-        user: "Charles",
-        added: new Date()
-    }
-];
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(assetsPath));
 app.set("views", join(dir, "views"));
 app.set("view engine", "ejs");
 
+// console.log(await getAllMessages())
 
-app.get("/", (req, res) => res.render("index", { title: "Mini Messageboard", messages: messages }));
+app.get("/", async (req, res) => res.render("index", { title: "Mini Messageboard", messages: await getAllMessages() }));
+
 app.get("/new", (req, res) => res.render("new"));
-app.get("/details/:id", (req, res) => res.render("message_id", { title: "Message Details", ...messages.find(message => message.id === req.params.id) }));
-app.post("/new", (req, res) => {
-    messages.push({
-        id: crypto.randomUUID(), text: req.body.message, user: req.body.user, added: new Date()
-    });
+
+app.get("/details/:id", async (req, res) => res.render("message_id", { title: "Message Details", ...(await getMessageById(req.params.id)) }));
+
+app.post("/new", async (req, res) => {
+    const added = new Date(Date.now()).toISOString();
+    await insertMessage(req.body.user, req.body.message, added);
     res.redirect("/");
 });
+
+app.get("/delete/:id", async (req, res) => {
+    await deleteMessage(req.params.id);
+    res.redirect("/");
+})
+
+app.get("/clear", async (req,res) => {
+    await clearDB();
+    res.redirect("/");
+})
 
 app.listen(PORT, (error) => {
     if (error) {

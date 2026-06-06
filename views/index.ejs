@@ -24,11 +24,12 @@
       <li>
         <div id=<%=message.id %> class="message_item">
           <p>Posted by: <strong>
-              <%= message.user %>
+              <%= message.username %>
             </strong> at <%= message.added.toDateString() %>:<br>
-              > <%= message.text %>
+              > <%= message.message %>
           </p>
           <button onclick="goToDetails(event)">Details</button>
+          <button onclick="deleteNote(event)">Delete</button>
         </div>
       </li>
       <% }) %>
@@ -37,6 +38,10 @@
   <script>
     function goToDetails(e) {
       window.location.href = "/details/" + e.target.parentElement.id;
+    }
+
+    function deleteNote(e) {
+      window.location.href = "/delete/" + e.target.parentElement.id;
     }
   </script>
 </body>
