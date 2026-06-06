@@ -1,6 +1,6 @@
 import { default as pool } from "./pools.js";
 
-async function getAllMessages() {
+async function queryAllMessages() {
     const { rows } = await pool.query("SELECT * FROM messages");
     return rows;
 }
@@ -11,7 +11,7 @@ async function getAllMessagesWithParam(param) {
     return rows;
 }
 
-async function getMessageById(id) {
+async function queryMessageById(id) {
     const result = await pool.query("SELECT * FROM messages WHERE id=$1",[id]);
     return result.rows[0];
 }
@@ -29,9 +29,9 @@ async function clearDB() {
 }
 
 export {
-    getAllMessages,
+    queryAllMessages,
     getAllMessagesWithParam,
-    getMessageById,
+    queryMessageById,
     insertMessage,
     deleteMessage,
     clearDB
