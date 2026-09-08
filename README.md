@@ -70,6 +70,10 @@ npm run dev
 - PostgreSQL
 - express-validator
 
+## Visualization
+
+<img width="1910" height="915" alt="mini_message_board_screenshot" src="https://github.com/user-attachments/assets/1b004eed-1b1b-438c-909f-ee054e7afceb" />
+
 ---
 
 Project developed following: [The Odin Project - Mini Message Board](https://www.theodinproject.com/lessons/node-path-nodejs-mini-message-board)
