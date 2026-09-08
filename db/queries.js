@@ -1,12 +1,11 @@
 import { default as pool } from "./pools.js";
 
 async function queryAllMessages() {
-    const { rows } = await pool.query("SELECT * FROM messages");
+    const { rows } = await pool.query("SELECT * FROM messages ORDER BY added DESC");
     return rows;
 }
 
 async function getAllMessagesWithParam(param) {
-    console.log("param", param)
     const { rows } = await pool.query("SELECT * FROM messages WHERE LOWER(message) LIKE $1||'%'", [param]);
     return rows;
 }
